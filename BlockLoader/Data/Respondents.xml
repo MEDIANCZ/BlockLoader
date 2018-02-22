@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<respondents>
+  <respondent id="00000001">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D02"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00000010">
+    <reachedblocks>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00000011">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00000100">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00000101">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="000000110">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00000111">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00001000">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00001001">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00001010">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D02"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00001011">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="A02"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D02"/>
+    </reachedblocks>
+  </respondent>
+  <respondent id="00001100">
+    <reachedblocks>
+      <reachedblock code="A01"/>
+      <reachedblock code="B01"/>
+      <reachedblock code="C01"/>
+      <reachedblock code="C02"/>
+      <reachedblock code="D01"/>
+      <reachedblock code="D03"/>
+    </reachedblocks>
+  </respondent>
+</respondents>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<blocks>
+  <block code="A01" footage="30" program="Vtip za stovku"/>
+  <block code="A02" footage="25" program="Vtip za stovku"/>
+  <block code="B01" footage="45" program="Kolotoč"/>
+  <block code="C01" footage="20" program="Tele Bazar"/>
+  <block code="C02" footage="30" program="Tele Bazar"/>
+  <block code="D01" footage="30" program="Vraždy v Midsommeru"/>
+  <block code="D02" footage="20" program="Vraždy v Midsommeru"/>
+  <block code="D03" footage="35" program="Vraždy v Midsommeru"/>
+</blocks>
