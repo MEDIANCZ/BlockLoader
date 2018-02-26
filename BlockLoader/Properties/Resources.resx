@@ -141,4 +141,7 @@
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Block Loader</value>
   </data>
+  <data name="CalculateReaches" xml:space="preserve">
+    <value>Calculate reaches</value>
+  </data>
 </root>

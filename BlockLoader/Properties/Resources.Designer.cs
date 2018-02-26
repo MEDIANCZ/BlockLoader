@@ -61,6 +61,15 @@ namespace BlockLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculate reaches.
+        /// </summary>
+        public static string CalculateReaches {
+            get {
+                return ResourceManager.GetString("CalculateReaches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Code {
