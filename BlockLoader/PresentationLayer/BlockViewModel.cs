@@ -4,7 +4,7 @@ namespace BlockLoader.PresentationLayer
 {
 	public class BlockViewModel : NotifyPropertyChangedBase
 	{
-		private int _reachedRespondentsCount;
+		private int? _reachedRespondentsCount;
 
 		public BlockViewModel(string code, int footage, string program)
 		{
@@ -17,7 +17,7 @@ namespace BlockLoader.PresentationLayer
 		public int Footage { get; private set; }
 		public string Program { get; private set; }
 
-		public int ReachedRespondentsCount
+		public int? ReachedRespondentsCount
 		{
 			get { return _reachedRespondentsCount; }
 			set
