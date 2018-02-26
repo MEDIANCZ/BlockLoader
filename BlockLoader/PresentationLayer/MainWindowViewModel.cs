@@ -59,24 +59,23 @@ namespace BlockLoader.PresentationLayer
 
 		public async Task LoadBlocks()
 		{
+			await DoBackgroundOperation(LoadBlocksInternal, OnLoadingBlocksError);
+		}
+
+		private async Task DoBackgroundOperation(Func<Task> operation, Action onException)
+		{
 			IsBusy = true;
 			IsGridVisible = false;
 
 			try
 			{
-				var blocks = await Task.Run(() => _blockRepository.LoadBlocks());
-				Blocks.Clear();
-				foreach (var block in blocks)
-				{
-					Blocks.Add(CreateBlockViewModel(block));
-				}
+				await operation();
 
 				IsGridVisible = true;
 			}
 			catch (Exception)
 			{
-				MessageBox.Show(Resources.ErrorLoadingBlocks, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-				Blocks.Clear();
+				onException();
 			}
 			finally
 			{
@@ -87,6 +86,22 @@ namespace BlockLoader.PresentationLayer
 		private static BlockViewModel CreateBlockViewModel(Block block)
 		{
 			return new BlockViewModel(block.Code, block.Footage, block.Program);
+		}
+
+		private void OnLoadingBlocksError()
+		{
+			MessageBox.Show(Resources.ErrorLoadingBlocks, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+			Blocks.Clear();
+		}
+
+		private async Task LoadBlocksInternal()
+		{
+			var blocks = await Task.Run(() => _blockRepository.LoadBlocks());
+			Blocks.Clear();
+			foreach (var block in blocks)
+			{
+				Blocks.Add(CreateBlockViewModel(block));
+			}
 		}
 	}
 }
