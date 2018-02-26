@@ -16,6 +16,10 @@
         <Setter Property="Margin" Value="10"/>
         <Setter Property="Width" Value="150"/>
       </Style>
+      <Style TargetType="TextBlock" x:Key="NumericColumn">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Margin" Value="2,0" />
+      </Style>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -28,29 +32,23 @@
                VerticalAlignment="Center"
                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
                Content="{x:Static properties:Resources.Loading}"/>
-      
-        <DataGrid 
-            Grid.Row="0"
-            HorizontalAlignment="Left"
-            Margin="10" 
-            VerticalAlignment="Top" 
-            AutoGenerateColumns="False"
-            IsReadOnly="True" 
-            ItemsSource="{Binding Blocks}"
-            Visibility="{Binding IsGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="{x:Static properties:Resources.Code}" Binding="{Binding Code}"/>
-                <DataGridTextColumn Header="{x:Static properties:Resources.Program}" Binding="{Binding Program}"/>
-                <DataGridTextColumn Header="{x:Static properties:Resources.Footage}" Binding="{Binding Footage}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="HorizontalAlignment" Value="Right" />
-                            <Setter Property="Margin" Value="2,0" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+
+      <DataGrid
+          Grid.Row="0"
+          HorizontalAlignment="Left"
+          Margin="10"
+          VerticalAlignment="Top"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          ItemsSource="{Binding Blocks}"
+          Visibility="{Binding IsGridVisible, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <DataGrid.Columns >
+          <DataGridTextColumn Header="{x:Static properties:Resources.Code}" Binding="{Binding Code}"/>
+          <DataGridTextColumn Header="{x:Static properties:Resources.Program}" Binding="{Binding Program}"/>
+          <DataGridTextColumn Header="{x:Static properties:Resources.Footage}" Binding="{Binding Footage}" ElementStyle="{StaticResource NumericColumn}"/>
+          <DataGridTextColumn Header="{x:Static properties:Resources.Reach}" Binding="{Binding ReachedRespondentsCount}" ElementStyle="{StaticResource NumericColumn}"/>
+        </DataGrid.Columns>
+      </DataGrid>
 
       <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" >
         <Button Content="{x:Static properties:Resources.LoadBlocks}" Command="{Binding LoadBlocksCommand}"/>

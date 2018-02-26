@@ -78,7 +78,23 @@ namespace BlockLoader.PresentationLayer
 		private async Task CalculateReachesInternal()
 		{
 			var respondents = await Task.Run(() => _respondentsRepository.LoadRespondents());
-			Console.WriteLine(respondents);
+
+			var blockReaches =
+				respondents
+					.SelectMany(
+						r => r.ReachedBlockCodes.Select(
+							bc => new
+							      {
+								      Respondent = r.Id,
+								      BlockCode = bc
+							      }))
+					.GroupBy(x => x.BlockCode)
+					.ToDictionary(g => g.Key, g => g.Distinct().Count());
+
+			foreach (var blockViewModel in Blocks.Where(b => blockReaches.ContainsKey(b.Code)))
+			{
+				blockViewModel.ReachedRespondentsCount = blockReaches[blockViewModel.Code];
+			}
 		}
 
 		private async Task DoBackgroundOperation(Func<Task> operation, Action onException)

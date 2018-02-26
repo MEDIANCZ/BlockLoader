@@ -149,5 +149,14 @@ namespace BlockLoader.Properties {
                 return ResourceManager.GetString("Program", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reach.
+        /// </summary>
+        public static string Reach {
+            get {
+                return ResourceManager.GetString("Reach", resourceCulture);
+            }
+        }
     }
 }
