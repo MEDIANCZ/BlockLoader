@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Input;
 using BlockLoader.DataLayer;
 using BlockLoader.Properties;
+using BlockLoader.Services;
 using BlockLoader.Utils;
 
 namespace BlockLoader.PresentationLayer
@@ -16,6 +17,7 @@ namespace BlockLoader.PresentationLayer
 		private bool _isBusy;
 		private bool _isGridVisible;
 		private readonly IRespondentRepository _respondentsRepository;
+		private readonly BlockReachesCalculator _reachesCalculator = new BlockReachesCalculator();
 
 		public MainWindowViewModel(IBlockRepository blockRepository, IRespondentRepository respondentsRepository)
 		{
@@ -79,17 +81,7 @@ namespace BlockLoader.PresentationLayer
 		{
 			var respondents = await Task.Run(() => _respondentsRepository.LoadRespondents());
 
-			var blockReaches =
-				respondents
-					.SelectMany(
-						r => r.ReachedBlockCodes.Select(
-							bc => new
-							      {
-								      Respondent = r.Id,
-								      BlockCode = bc
-							      }))
-					.GroupBy(x => x.BlockCode)
-					.ToDictionary(g => g.Key, g => g.Distinct().Count());
+			var blockReaches = _reachesCalculator.CalculateBlockReaches(respondents);
 
 			foreach (var blockViewModel in Blocks.Where(b => blockReaches.ContainsKey(b.Code)))
 			{
