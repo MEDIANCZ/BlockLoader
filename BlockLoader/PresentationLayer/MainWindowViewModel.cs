@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using BlockLoader.DataLayer;
 using BlockLoader.Properties;
+using BlockLoader.Services;
 using BlockLoader.Utils;
 
 namespace BlockLoader.PresentationLayer
@@ -14,16 +16,22 @@ namespace BlockLoader.PresentationLayer
 		private readonly IBlockRepository _blockRepository;
 		private bool _isBusy;
 		private bool _isGridVisible;
+		private readonly IRespondentRepository _respondentsRepository;
+		private readonly BlockReachesCalculator _reachesCalculator = new BlockReachesCalculator();
 
-		public MainWindowViewModel(IBlockRepository blockRepository)
+		public MainWindowViewModel(IBlockRepository blockRepository, IRespondentRepository respondentsRepository)
 		{
 			_blockRepository = blockRepository;
+			_respondentsRepository = respondentsRepository;
 			IsGridVisible = false;
 			Blocks = new ObservableCollection<BlockViewModel>();
 			LoadBlocksCommand = new AsyncDelegateCommand(LoadBlocks);
+			CalculateReachesCommand = new AsyncDelegateCommand(CalculateReaches, () => Blocks.Any());
 		}
 
 		public ICommand LoadBlocksCommand { get; private set; }
+
+		public ICommand CalculateReachesCommand { get; private set; }
 
 		public bool IsBusy
 		{
@@ -59,24 +67,42 @@ namespace BlockLoader.PresentationLayer
 
 		public async Task LoadBlocks()
 		{
+			await DoBackgroundOperation(LoadBlocksInternal, OnLoadingBlocksError);
+		}
+
+		public async Task CalculateReaches()
+		{
+			await DoBackgroundOperation(
+				CalculateReachesInternal,
+				() => MessageBox.Show(Resources.ErrorCalculatingReaches, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error));
+		}
+
+		private async Task CalculateReachesInternal()
+		{
+			var respondents = await Task.Run(() => _respondentsRepository.LoadRespondents());
+
+			var blockReaches = _reachesCalculator.CalculateBlockReaches(respondents);
+
+			foreach (var blockViewModel in Blocks.Where(b => blockReaches.ContainsKey(b.Code)))
+			{
+				blockViewModel.ReachedRespondentsCount = blockReaches[blockViewModel.Code];
+			}
+		}
+
+		private async Task DoBackgroundOperation(Func<Task> operation, Action onException)
+		{
 			IsBusy = true;
 			IsGridVisible = false;
 
 			try
 			{
-				var blocks = await Task.Run(() => _blockRepository.LoadBlocks());
-				Blocks.Clear();
-				foreach (var block in blocks)
-				{
-					Blocks.Add(CreateBlockViewModel(block));
-				}
+				await operation();
 
 				IsGridVisible = true;
 			}
 			catch (Exception)
 			{
-				MessageBox.Show(Resources.ErrorLoadingBlocks, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
-				Blocks.Clear();
+				onException();
 			}
 			finally
 			{
@@ -87,6 +113,22 @@ namespace BlockLoader.PresentationLayer
 		private static BlockViewModel CreateBlockViewModel(Block block)
 		{
 			return new BlockViewModel(block.Code, block.Footage, block.Program);
+		}
+
+		private void OnLoadingBlocksError()
+		{
+			MessageBox.Show(Resources.ErrorLoadingBlocks, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error);
+			Blocks.Clear();
+		}
+
+		private async Task LoadBlocksInternal()
+		{
+			var blocks = await Task.Run(() => _blockRepository.LoadBlocks());
+			Blocks.Clear();
+			foreach (var block in blocks)
+			{
+				Blocks.Add(CreateBlockViewModel(block));
+			}
 		}
 	}
 }

@@ -54,6 +54,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataLayer\RepositoryBase.cs" />
+    <Compile Include="DataLayer\Respondent.cs" />
+    <Compile Include="DataLayer\RespondentRepository.cs" />
+    <Compile Include="Services\BlockReachesCalculator.cs" />
     <Compile Include="PresentationLayer\BlockViewModel.cs" />
     <Compile Include="DataLayer\IBlockRepository.cs" />
     <Compile Include="DataLayer\XmlLoader.cs" />
@@ -65,6 +69,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataLayer\IRespondentRepository.cs" />
     <Compile Include="Utils\AsyncDelegateCommand.cs" />
     <Compile Include="DataLayer\Block.cs" />
     <Compile Include="DataLayer\BlockRepository.cs" />

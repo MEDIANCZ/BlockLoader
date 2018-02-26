@@ -7,11 +7,13 @@ namespace BlockLoader.Utils
 	public class AsyncDelegateCommand : ICommand
 	{
 		private readonly Func<Task> _command;
-		private bool _canExecute = true;
+		private readonly Func<bool> _canExecute;
+		private bool _executing;
 
-		public AsyncDelegateCommand(Func<Task> command)
+		public AsyncDelegateCommand(Func<Task> command, Func<bool> canExecute = null)
 		{
 			_command = command;
+			_canExecute = canExecute;
 		}
 
 		public event EventHandler CanExecuteChanged
@@ -27,14 +29,14 @@ namespace BlockLoader.Utils
 
 		public bool CanExecute(object parameter)
 		{
-			return _canExecute;
+			return !_executing && (_canExecute == null || _canExecute());
 		}
 
 		public async void Execute(object parameter)
 		{
-			_canExecute = false;
+			_executing = true;
 			await _command();
-			_canExecute = true;
+			_executing = false;
 		}
 	}
 }

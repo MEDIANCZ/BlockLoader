@@ -141,4 +141,13 @@
   <data name="MainWindowTitle" xml:space="preserve">
     <value>Načítání bloků</value>
   </data>
+  <data name="CalculateReaches" xml:space="preserve">
+    <value>Spočítat sledovanosti</value>
+  </data>
+  <data name="ErrorCalculatingReaches" xml:space="preserve">
+    <value>Nastala okurka během počítání reachů.</value>
+  </data>
+  <data name="Reach" xml:space="preserve">
+    <value>Zásah</value>
+  </data>
 </root>

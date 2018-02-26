@@ -61,6 +61,15 @@ namespace BlockLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Calculate reaches.
+        /// </summary>
+        public static string CalculateReaches {
+            get {
+                return ResourceManager.GetString("CalculateReaches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Code {
@@ -75,6 +84,15 @@ namespace BlockLoader.Properties {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error has okurked while calculating reaches..
+        /// </summary>
+        public static string ErrorCalculatingReaches {
+            get {
+                return ResourceManager.GetString("ErrorCalculatingReaches", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace BlockLoader.Properties {
         public static string Program {
             get {
                 return ResourceManager.GetString("Program", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reach.
+        /// </summary>
+        public static string Reach {
+            get {
+                return ResourceManager.GetString("Reach", resourceCulture);
             }
         }
     }
