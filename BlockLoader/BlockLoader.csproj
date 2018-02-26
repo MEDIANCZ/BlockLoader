@@ -54,6 +54,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataLayer\RepositoryBase.cs" />
     <Compile Include="PresentationLayer\BlockViewModel.cs" />
     <Compile Include="DataLayer\IBlockRepository.cs" />
     <Compile Include="DataLayer\XmlLoader.cs" />
