@@ -144,4 +144,7 @@
   <data name="CalculateReaches" xml:space="preserve">
     <value>Calculate reaches</value>
   </data>
+  <data name="ErrorCalculatingReaches" xml:space="preserve">
+    <value>An error has okurked while calculating reaches.</value>
+  </data>
 </root>

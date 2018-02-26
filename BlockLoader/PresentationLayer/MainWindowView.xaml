@@ -54,7 +54,7 @@
 
       <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" >
         <Button Content="{x:Static properties:Resources.LoadBlocks}" Command="{Binding LoadBlocksCommand}"/>
-        <Button Content="{x:Static properties:Resources.CalculateReaches}" />
+        <Button Content="{x:Static properties:Resources.CalculateReaches}" Command="{Binding CalculateReachesCommand}" />
       </StackPanel>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -14,16 +15,21 @@ namespace BlockLoader.PresentationLayer
 		private readonly IBlockRepository _blockRepository;
 		private bool _isBusy;
 		private bool _isGridVisible;
+		private readonly IRespondentRepository _respondentsRepository;
 
-		public MainWindowViewModel(IBlockRepository blockRepository)
+		public MainWindowViewModel(IBlockRepository blockRepository, IRespondentRepository respondentsRepository)
 		{
 			_blockRepository = blockRepository;
+			_respondentsRepository = respondentsRepository;
 			IsGridVisible = false;
 			Blocks = new ObservableCollection<BlockViewModel>();
 			LoadBlocksCommand = new AsyncDelegateCommand(LoadBlocks);
+			CalculateReachesCommand = new AsyncDelegateCommand(CalculateReaches, () => Blocks.Any());
 		}
 
 		public ICommand LoadBlocksCommand { get; private set; }
+
+		public ICommand CalculateReachesCommand { get; private set; }
 
 		public bool IsBusy
 		{
@@ -60,6 +66,19 @@ namespace BlockLoader.PresentationLayer
 		public async Task LoadBlocks()
 		{
 			await DoBackgroundOperation(LoadBlocksInternal, OnLoadingBlocksError);
+		}
+
+		public async Task CalculateReaches()
+		{
+			await DoBackgroundOperation(
+				CalculateReachesInternal,
+				() => MessageBox.Show(Resources.ErrorCalculatingReaches, Resources.Error, MessageBoxButton.OK, MessageBoxImage.Error));
+		}
+
+		private async Task CalculateReachesInternal()
+		{
+			var respondents = await Task.Run(() => _respondentsRepository.LoadRespondents());
+			Console.WriteLine(respondents);
 		}
 
 		private async Task DoBackgroundOperation(Func<Task> operation, Action onException)

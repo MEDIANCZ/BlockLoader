@@ -88,6 +88,15 @@ namespace BlockLoader.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error has okurked while calculating reaches..
+        /// </summary>
+        public static string ErrorCalculatingReaches {
+            get {
+                return ResourceManager.GetString("ErrorCalculatingReaches", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An error has okurked while loading blocks..
         /// </summary>
         public static string ErrorLoadingBlocks {

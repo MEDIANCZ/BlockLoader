@@ -17,7 +17,7 @@ namespace BlockLoader.Tests
 				             new Block("b", 25, "Neváhej a koukej"),
 				             new Block("c", 35, "Neváhej a padej")
 			             };
-			var mainWindowViewModel = new MainWindowViewModel(new BlockRepositoryFake(blocks));
+			var mainWindowViewModel = new MainWindowViewModel(new BlockRepositoryFake(blocks), null);
 			await mainWindowViewModel.LoadBlocks();
 
 			Assert.AreEqual(blocks.Length, mainWindowViewModel.Blocks.Count);
