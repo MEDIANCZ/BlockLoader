@@ -35,6 +35,7 @@ namespace BlockLoader.Utils
 			_canExecute = false;
 			await _command();
 			_canExecute = true;
+			RaiseCanExecuteChanged();
 		}
 	}
 }
