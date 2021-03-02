@@ -4,7 +4,7 @@ Bloky se načítají stisknutím tlačítka "Načíst bloky".
 Jedná se o jednoduchou aplikaci, která představuje víceméně běžný úkol - vzít data, transformovat je, spočítat nějaké hodnoty a poté je zobrazit v GUI.
 
 ### Požadavky:
-1) Do tabulky přidat sloupec, který bude určovat, kolik diváků daný blok měl.
+1) Do tabulky přidat sloupec, který bude určovat, kolik diváků daný blok měl. Tento sloupec by se měl zobrazit až po načtení diváků (respondentů).
 2) Hodnoty se vypočtou po stisknutí příslušného tlačítka (=> přidat tlačítko).
 3) Přidat testy na novou funkcionalitu (určení počtu diváků a zobrazení této hodnoty).
 
