@@ -23,7 +23,7 @@ namespace BlockLoader.PresentationLayer
 			LoadBlocksCommand = new AsyncDelegateCommand(LoadBlocks);
 		}
 
-		public ICommand LoadBlocksCommand { get; private set; }
+		public ObservableCollection<BlockViewModel> Blocks { get; }
 
 		public bool IsBusy
 		{
@@ -40,8 +40,6 @@ namespace BlockLoader.PresentationLayer
 			}
 		}
 
-		public ObservableCollection<BlockViewModel> Blocks { get; private set; }
-
 		public bool IsGridVisible
 		{
 			get { return _isGridVisible; }
@@ -57,6 +55,8 @@ namespace BlockLoader.PresentationLayer
 			}
 		}
 
+		public ICommand LoadBlocksCommand { get; }
+		
 		public async Task LoadBlocks()
 		{
 			IsBusy = true;

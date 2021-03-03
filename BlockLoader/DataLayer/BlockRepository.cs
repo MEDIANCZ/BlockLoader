@@ -29,7 +29,7 @@ namespace BlockLoader.DataLayer
 			}
 
 			var doc = LoadDocument(_filePath);
-			if (doc == null || doc.Root == null)
+			if (doc?.Root == null)
 			{
 				throw new InvalidOperationException("Xml file is empty, or invalid.");
 			}
@@ -51,8 +51,7 @@ namespace BlockLoader.DataLayer
 			var program = attributes[ProgramElementName].Value;
 			var footage = attributes[FootageElementName].Value;
 
-			int footageNumber;
-			if (string.IsNullOrWhiteSpace(code) || !int.TryParse(footage, out footageNumber))
+			if (string.IsNullOrWhiteSpace(code) || !int.TryParse(footage, out var footageNumber))
 			{
 				throw new FormatException("Footage must be a number.");
 			}

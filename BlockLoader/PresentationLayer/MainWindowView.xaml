@@ -23,7 +23,6 @@
                VerticalAlignment="Center"
                Visibility="{Binding IsBusy, Converter={StaticResource BooleanToVisibilityConverter}}"
                Content="{x:Static properties:Resources.Loading}"/>
-
       
         <DataGrid 
             Grid.Row="0"

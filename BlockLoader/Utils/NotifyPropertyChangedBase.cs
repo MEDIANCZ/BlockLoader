@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 
 namespace BlockLoader.Utils
 {
@@ -11,11 +12,12 @@ namespace BlockLoader.Utils
 		protected void NotifyPropertyChanged<TProperty>(Expression<Func<TProperty>> projection)
 		{
 			var memberExpression = (MemberExpression)projection.Body;
-			var handler = PropertyChanged;
-			if (handler != null)
-			{
-				handler(this, new PropertyChangedEventArgs(memberExpression.Member.Name));
-			}
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(memberExpression.Member.Name));
+		}
+
+		protected void NotifyPropertyChanged<TProperty>([CallerMemberName]string propertyName = null)
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }

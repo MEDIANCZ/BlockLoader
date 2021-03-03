@@ -9,8 +9,8 @@
 			Program = program;
 		}
 
-		public string Code { get; private set; }
-		public int Footage { get; private set; }
-		public string Program { get; private set; }
+		public string Code { get; }
+		public int Footage { get; }
+		public string Program { get; }
 	}
 }
